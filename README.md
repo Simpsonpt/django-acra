@@ -106,13 +106,18 @@ public class TA extends Application
 
 * [Django ACRA v1.0]
 
-
 ##Tech
 
 * [ACRA] - Application Crash Reports for Android
 * [License] - Module License
 
+##Author
+
+* [@Simps0n] - Twitter
+* [Pathon Project Playground] - Webpage
 
   [ACRA]: https://github.com/ACRA/acra   
   [License]: https://github.com/Simpsonpt/django-acra/blob/master/LICENSE    
   [Django ACRA v1.0]: https://github.com/Simpsonpt/django-acra/releases/tag/django-acra-1.0
+  [@Simps0n]: https://twitter.com/simps0n
+  [Pathon Project Playground]: http://www.pathonproject.com/
