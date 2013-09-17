@@ -104,8 +104,8 @@ public class TA extends Application
  
 ##Version
 
-* Django ACRA v1.0
-Simple integration with any Django project, build from ACRA Custom Server Script rules.
+* [Django ACRA v1.0]
+
 
 ##Tech
 
@@ -115,3 +115,4 @@ Simple integration with any Django project, build from ACRA Custom Server Script
 
   [ACRA]: https://github.com/ACRA/acra   
   [License]: https://github.com/Simpsonpt/django-acra/blob/master/LICENSE    
+  [Django ACRA v1.0]: https://github.com/Simpsonpt/django-acra/releases/tag/django-acra-1.0
