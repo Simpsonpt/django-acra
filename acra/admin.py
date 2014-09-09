@@ -20,7 +20,7 @@ class CrashReportAdmin(admin.ModelAdmin):
 		('Device', {'fields':['build','display','settings_global','settings_system','settings_secure','device_features'],'classes': ['collapse']}),
 		('Special Information', {'fields':['user_email','is_silent','user_comment','custom_data'],'classes': ['collapse']})
 	]
-	list_display = ('brand','product','android_version','created','description','solved')
+	list_display = ('brand','product','android_version','created','app_version_name','solved')
 	readonly_fields = ('report_id','installation_id','brand','product','phone_model','android_version','user_app_start_date','user_crash_date','created','app_version_name','app_version_code','package_name','logcat','stack_trace','environment','shared_preferences','total_mem_size','available_mem_size','dumpsys_meminfo','initial_configuration','file_path','crash_configuration','build','display','settings_global','settings_system','settings_secure','device_features','user_email','is_silent','user_comment','custom_data')
 	list_filter = ['brand','solved','android_version','app_version_code','created']
 	search_fields = ['brand','product','description']
