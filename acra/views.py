@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 import json
 import logging
 
-log = logging.getLogger("acra.vivint")
+log = logging.getLogger("acra")
 DEBUG = True
 SESSION_NAME = "app_session"
 
