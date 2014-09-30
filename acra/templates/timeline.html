@@ -1,0 +1,71 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static "css/nv.d3.css" %}">
+<style>
+
+bod{
+width:100%;
+}
+.chart{
+	width:100%;
+}
+
+#chart svg{
+  height: 400px;
+  width:100%;
+}
+</style>
+<script type="text/javascript" src="{% static "js/d3.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/nv.d3.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/lineWithFocusChart.js" %}"></script>
+<script>
+var fmt = d3.time.format("%m/%d %I %p");
+nv.addGraph(function() {
+	  var chart = nv.models.lineWithFocusChart()
+	  .xTickFormat(function(d){
+	    return fmt( new Date(d));
+	  });
+	      //.x(function(d) { return d.label })
+	      //.y(function(d) { return d.value })
+	      //.showLabels(true);
+	 
+
+	    d3.select("#chart svg")
+	        .datum(timeData())
+	        .transition().duration(350)
+	        .call(chart);
+
+	  return chart;
+	});
+
+function timeData(){
+	console.log("get data");
+	return [{"key":"total","color":"#FF8200", "values":[
+	{% for x, y in time_data %}{"x":Date.parse("{{y}}"),"y":{{x}}},{% endfor %}
+	]}/*,
+	        {"key":"two","color":"blue", "values":[
+	                                               {"x":1, "y":1},
+	                                               {"x":2, "y":5},
+	                                               {"x":3, "y":6},
+	                                               {"x":5, "y":7}
+	                                               
+	]}*/
+	]
+	        
+}
+</script>
+
+
+
+<html>
+	<body>
+	<a href="/dashboard">dashboard</a>
+	<br/>
+	
+		<div class="chart" id="chart" style="float:left;text-align:center;">
+				<a target="_blank" href="/admin/acra/crashreport/"><h1>Timeline</h1></a>
+			  	<svg></svg>
+		</div>
+		
+	</body>
+
+</html
