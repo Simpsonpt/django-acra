@@ -44,6 +44,8 @@ urlpatterns = patterns('',
 $ python manage.py syncdb
 ```
 
+- Create a Django user in your admin page (to get a `username` and `password`) and set the acra permissions(`'acra.add_crashreport'`, `'acra.change_crashreport'` and `'acra.delete_crashreport'`) to this new user.
+
 ##Android Snippet
 
 - Application Class
@@ -56,9 +58,12 @@ import org.acra.annotation.ReportsCrashes;
 
 import android.app.Application;
 
-@ReportsCrashes (formKey = "",
-    			formUri = "http://pathonproject.com/acra/")
-    
+@ReportsCrashes(
+        formUri = "http://pathonproject.com/acra/"),
+        reportType = HttpSender.Type.JSON,
+        formUriBasicAuthLogin = "<username>",
+        formUriBasicAuthPassword = "<password>"
+)
 public class TA extends Application
 {
 
