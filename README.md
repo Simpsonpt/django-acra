@@ -59,7 +59,7 @@ import org.acra.annotation.ReportsCrashes;
 import android.app.Application;
 
 @ReportsCrashes(
-        formUri = "http://pathonproject.com/acra/"),
+        formUri = "http://pathonproject.com/acra/_design/acra-storage/_update/report/"),
         reportType = HttpSender.Type.JSON,
         formUriBasicAuthLogin = "<username>",
         formUriBasicAuthPassword = "<password>"
