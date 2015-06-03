@@ -6,6 +6,7 @@ from django.shortcuts import get_object_or_404, render
 from django.db.models import Count
 from django.db import connection
 from django.contrib.auth.decorators import login_required
+from acra.decorators import http_basic_auth
 
 import json
 import logging
@@ -16,21 +17,22 @@ SESSION_NAME = "app_session"
 
 #If there is no handling of the CSRF Token
 @csrf_exempt
+@http_basic_auth
+@login_required
 def index(request):
-	
-	
+
 	if(request.method=="PUT" or request.method=="POST"):
 		#log.log(logging.DEBUG, "got put "+ str(request.body) )
 		json_data = json.loads(request.body)
 		description = "";
 		if(json_data.has_key("description")):
 			description = json_data["description"]
-		
+
 		DEBUG = json_data['APP_VERSION_CODE'] == 10509999
 		if DEBUG:
 			log.log(logging.DEBUG, "REQUEST:: %s"%json_data['APP_VERSION_CODE'])
-				
-		
+
+
 		notallow = ["description","solved",SESSION_NAME]
 		crashreport= CrashReport()
 		for key in json_data.keys():
@@ -44,9 +46,9 @@ def index(request):
 					if(v!=None):
 						setattr(crashreport,key.lower(),json_data[key])
 		crashreport.save()
-	
+
 	return HttpResponse(json.dumps({"ok":"true"}), content_type="application/json")
-		
+
 
 @csrf_exempt
 @login_required
@@ -57,12 +59,12 @@ def dashboard(request):
 	brand_count = CrashReport.objects.filter().values('brand').annotate(count=Count('pk')).order_by("brand")
 	#log.log(logging.DEBUG, "query: "+str(app_version_count.query))
 
-	return render(request, 'dashboard.html', {'android_verions': android_versions, 
+	return render(request, 'dashboard.html', {'android_verions': android_versions,
 											'versions':version_count,
 											'app_version':app_version_count,
 											'brand':brand_count})
-	
-	
+
+
 @csrf_exempt
 @login_required
 def timeline(request):
@@ -75,7 +77,6 @@ def timeline(request):
 	cursor = connection.cursor()
 	cursor.execute(query)
 	data = cursor.fetchall();
-	
+
 
 	return render(request, 'timeline.html', {"time_data": data})
-	
