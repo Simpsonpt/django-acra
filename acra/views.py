@@ -28,7 +28,7 @@ def index(request):
 		if(json_data.has_key("description")):
 			description = json_data["description"]
 
-		DEBUG = json_data['APP_VERSION_CODE'] == 10509999
+		DEBUG = json_data.has_key("APP_VERSION_CODE") and json_data['APP_VERSION_CODE'] == 10509999
 		if DEBUG:
 			log.log(logging.DEBUG, "REQUEST:: %s"%json_data['APP_VERSION_CODE'])
 
